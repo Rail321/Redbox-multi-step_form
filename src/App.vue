@@ -7,6 +7,7 @@
       <StepOne
         v-if="!isFormCompleted"
         v-bind:isSubmissionSuccessful="isSubmissionSuccessful"
+        v-bind:imageUrl="imageUrl"
         v-on:next="next"
         v-on:setImage="setImage"
       />
@@ -55,11 +56,11 @@
         this.isFormCompleted = false
       },
 
-      setImage(event) {
-        const [ image ] = event.target.files
-        
-        if(image) {
+      setImage(image) {
+        if (image) {
           this.imageUrl = URL.createObjectURL(image)
+        } else {
+          this.imageUrl = ''
         }
       },
     },
@@ -123,6 +124,8 @@
   $color-3: #9B63F8;
   $color-4: #211536;
   $color-5: #CDB1FB;
+  $color-6: #F8F8FE;
+  $color-7: #351767;
   $hover-change: 10;
   $active-change: 20;
   $transition: 0.2s all;
@@ -144,11 +147,17 @@
     display: flex;
     margin: -$col-padding;
   }
+  .d-none {
+    display: none;
+  }
   .flex-column {
     flex-direction: column;
   }
   .align-center {
     align-items: center;
+  }
+  .justify-center {
+    justify-content: center;
   }
   .flex-child {
     padding: $col-padding;
@@ -161,6 +170,9 @@
   }
   .w-100 {
     width: 100%;
+  }
+  .position-relative {
+    position: relative;
   }
 
   // UI
@@ -265,6 +277,8 @@
 
   // Input-group
   .input-group {
+    display: block;
+
     &__text {
       margin-bottom: 10px;
       font-family: Montserrat;
@@ -276,6 +290,67 @@
     }
     &__input {
 
+    }
+    &__file {
+      max-width: 126px;
+    }
+    &__file-trigger {
+      height: 126px;
+      margin: 0;
+      background-color: $color-6;
+      border: 4px solid $color-5;
+      border-radius: $border-radius;
+      cursor: pointer;
+
+      &:hover {
+        transition: $transition;
+        border-color: darken($color-5, $hover-change);
+        background-color: darken($color-6, $hover-change);
+      }
+      &_active {
+        border: none;
+        cursor: default;
+      }
+    }
+    &__file-trigger-img-wrapper {
+      width: 100%;
+      height: 100%;
+      border-radius: $border-radius;
+      overflow: hidden;
+    }
+    &__file-trigger-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    &__file-trigger-reset {
+      margin: 0;
+      position: absolute;
+      top: 0;
+      bottom: auto;
+      left: auto;
+      right: 0;
+      width: 30px;
+      height: 30px;
+      transform: translate(50%, -50%);
+      border-radius: 50%;
+      background-color: $color-7;
+      cursor: pointer;
+
+      &:hover {
+        transition: $transition;
+        background-color: darken($color-7, $hover-change);
+      }
+    }
+    &__caption {
+      padding-top: 10px;
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 10px;
+      line-height: 14px;
+      color: $color-4;
+      opacity: 0.7;
     }
   }
 </style>

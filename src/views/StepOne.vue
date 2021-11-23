@@ -72,9 +72,37 @@
           <div class="form__group">
             <h2 class="h2 section__h2">Фотография</h2>
 
-            <input type="file"
-              v-on:change="setImage"
-            >
+            <div class="input-group input-group__file">
+              <input class="d-none" type="file"
+                ref="imageFile"
+                v-on:change="setImage"
+              >
+
+              <div class="input-group__file-trigger d-flex justify-center align-center"
+                v-if="!imageUrl"
+                v-on:click="$refs.imageFile.click()"
+              >
+                <img src="@/assets/img/photo.svg" alt="file">
+              </div>
+
+              <div class="input-group__file-trigger input-group__file-trigger_active d-flex justify-center align-center position-relative"
+                v-else
+              >
+                <div class="input-group__file-trigger-img-wrapper">
+                  <img alt="preview" class="input-group__file-trigger-img"
+                    v-bind:src="imageUrl"
+                  >
+                </div>
+
+                <div class="input-group__file-trigger-reset d-flex justify-center align-center"
+                  v-on:click="resetImage"
+                >
+                  <img src="@/assets/img/close.svg" alt="close">
+                </div>
+              </div>
+
+              <p class="input-group__caption">Главная фотография (обложка мероприятия)</p>
+            </div>
           </div>
         </div>
 
@@ -100,11 +128,21 @@
 
 <script>
   export default {
-    props: [ 'isSubmissionSuccessful' ],
+    props: [ 'isSubmissionSuccessful', 'imageUrl' ],
 
     methods: {
-      setImage(event) {
-        this.$emit('setImage', event)
+      setImage() {
+        const [ image ] = this.$refs.imageFile.files
+
+        if (image) {
+          this.$emit('setImage', image)
+        }
+      },
+
+      resetImage() {
+        this.$refs.imageFile.value = ''
+
+        this.$emit('setImage', '')
       }
     }
   }
