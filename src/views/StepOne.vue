@@ -94,7 +94,7 @@
                   >
                 </div>
 
-                <div class="input-group__file-trigger-reset d-flex justify-center align-center"
+                <div class="remove d-flex justify-center align-center"
                   v-on:click="resetImage"
                 >
                   <img src="@/assets/img/close.svg" alt="close">
@@ -103,6 +103,86 @@
 
               <p class="input-group__caption">Главная фотография (обложка мероприятия)</p>
             </div>
+          </div>
+
+          <div class="form__group">
+            <label class="input-group">
+              <p class="input-group__text">Подробное описание</p>
+
+              <textarea class="input-group__input input-text input-textarea w-100"></textarea>
+            </label>
+          </div>
+
+          <div class="form__group">
+
+            <div class="datetime">
+              <ul class="datetime__list"
+                if="datetimes"
+              >
+                <li
+                  v-for="(datetime, key) of datetimes"
+                  v-bind:key="key"
+                >
+                  <div class="form__group datetime__element position-relative">
+                    <span>asdf</span>
+
+                    <div class="remove d-flex justify-center align-center"
+                      v-on:click="$emit('removeDatetime', datetime)"
+                    >
+                      <img src="@/assets/img/close.svg" alt="close">
+                    </div>
+                  </div>
+                </li>
+              </ul>
+
+              <div class="form__group">
+                <div class="d-flex">
+                  <div class="flex-child flex-grow-1">
+                    <label class="input-group">
+                      <p class="input-group__text">Название</p>
+
+                      <input type="text" class="input-group__input input-text w-100">
+                    </label>
+                  </div>
+                  
+                  <div class="flex-child flex-grow-1">
+                    <label class="input-group">
+                      <p class="input-group__text">Название</p>
+
+                      <input type="text" class="input-group__input input-text w-100">
+                    </label>
+                  </div>
+                  
+                  <div class="flex-child">
+                    <p class="input-group__text">&nbsp;</p>
+
+                    <div class="h-100 d-flex justify-center align-center">---</div>
+                  </div>
+                  
+                  <div class="flex-child flex-grow-1">
+                    <label class="input-group">
+                      <p class="input-group__text">Название</p>
+
+                      <input type="text" class="input-group__input input-text w-100">
+                    </label>
+                  </div>
+                  
+                  <div class="flex-child flex-grow-1">
+                    <label class="input-group">
+                      <p class="input-group__text">Название</p>
+
+                      <input type="text" class="input-group__input input-text w-100">
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn_small" type="button"
+              v-on:click="$emit('addDatetime')"
+            >
+              <span>+ Добавить дату</span>
+            </button>
           </div>
         </div>
 
@@ -128,7 +208,7 @@
 
 <script>
   export default {
-    props: [ 'isSubmissionSuccessful', 'imageUrl' ],
+    props: [ 'isSubmissionSuccessful', 'imageUrl', 'datetimes' ],
 
     methods: {
       setImage() {

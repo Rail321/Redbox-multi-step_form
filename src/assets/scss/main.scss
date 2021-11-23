@@ -1,5 +1,6 @@
-@import url("./reset.scss");
-@import url("./helpers.scss");
-@import url("./variables.scss");
+@import "./reset.scss";
+@import "./variables.scss";
+@import "./helpers.scss";
+@import "./ui.scss";
 
-@import url("./blocks/main.scss");
+@import "./blocks.scss";
