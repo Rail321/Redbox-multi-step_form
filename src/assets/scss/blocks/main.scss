@@ -1,0 +1,18 @@
+.main {
+  background-color: $color-1;
+
+  &__content {
+    min-height: 100vh;
+    padding: 40px 30px 50px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__body {
+    flex-grow: 1;
+  }
+}
+
+.content-wrapper {
+  background-color: $color-2;
+}
