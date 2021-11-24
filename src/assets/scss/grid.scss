@@ -8,8 +8,10 @@
 .col-12 {
   flex-basis: 100%;
 }
-.flex-grow-0 {
-  flex-grow: 0;
+@media (min-width: 768px) {
+  .col-md-6 {
+    flex-basis: 50%;
+  }
 }
 @media (min-width: 992px) {
   .col-lg-4 {
@@ -17,5 +19,8 @@
   }
   .col-lg-6 {
     flex-basis: 50%;
+  }
+  .col-lg-auto {
+    flex-basis: auto;
   }
 }

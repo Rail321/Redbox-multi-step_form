@@ -9,3 +9,55 @@
 .w-auto {
   width: auto;
 }
+
+.d-flex {
+  display: flex;
+}
+.d-none {
+  display: none;
+}
+@media (min-width: 992px) {
+  .d-lg-flex {
+    display: flex;
+  }
+  .flex-lg-nowrap {
+    flex-wrap: nowrap;
+  }
+}
+.flex-column {
+  flex-direction: column;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-space-between {
+  justify-content: space-between;
+}
+.align-center {
+  align-items: center;
+}
+.flex-grow-0 {
+  flex-grow: 0;
+}
+.flex-grow-1 {
+  flex-grow: 1;
+}
+.flex-shrink-0 {
+  flex-shrink: 0;
+}
+.flex-shrink-1 {
+  flex-shrink: 1;
+}
+
+.position-relative {
+  position: relative;
+}
+.position-absolute {
+  position: absolute;
+}
+.position-reset {
+  top: auto;
+  bottom: auto;
+  left: auto;
+  right: auto;
+}
