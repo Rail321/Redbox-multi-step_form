@@ -1,0 +1,15 @@
+.notice {
+  padding: 20px 25px;
+
+  background-color: #FFFFFF;
+  box-shadow: 0px 8px 25px rgba(155, 99, 248, 0.15);
+  border-radius: 4px;
+
+  &__row {
+    margin: -10px;
+  }
+
+  &__col {
+    padding: 10px;
+  }
+}

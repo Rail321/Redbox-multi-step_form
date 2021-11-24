@@ -17,6 +17,7 @@
 
           <Preview
             v-else
+            v-bind:imageUrl="imageUrl"
             v-on:previous="previous"
           />
         </form>
