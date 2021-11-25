@@ -7,7 +7,10 @@
         <label>
           <h3 class="h3 form__h3">Организатор</h3>
           
-          <input class="form-control w-100" type="text" value="Coca-cola">
+          <input class="form-control w-100" type="text"
+            v-bind:value="organizer"
+            v-on:input="$emit('setOrganizer', $event.target.value)"
+          >
         </label>
       </div>
       
@@ -19,7 +22,10 @@
             <label>
               <h3 class="h3 form__h3">Телефон</h3>
               
-              <input class="form-control w-100" type="text" value="+7 (999) 555-33-22">
+              <input class="form-control w-100" type="text"
+                v-bind:value="phone"
+                v-on:input="$emit('setPhone', $event.target.value)"
+              >
             </label>
           </div>
           
@@ -27,7 +33,10 @@
             <label>
               <h3 class="h3 form__h3">E-mail</h3>
               
-              <input class="form-control w-100" type="text" value="ivanov@mail.ru">
+              <input class="form-control w-100" type="text"
+                v-bind:value="email"
+                v-on:input="$emit('setEmail', $event.target.value)"
+              >
             </label>
           </div>
           
@@ -35,7 +44,10 @@
             <label>
               <h3 class="h3 form__h3">Город организатора</h3>
               
-              <input class="form-control w-100" type="text" value="Казань">
+              <input class="form-control w-100" type="text"
+                v-bind:value="city"
+                v-on:input="$emit('setCity', $event.target.value)"
+              >
             </label>
           </div>
         </div>
@@ -47,7 +59,10 @@
         <label>
           <h3 class="h3 form__h3">Название</h3>
           
-          <input class="form-control w-100" type="text">
+          <input class="form-control w-100" type="text"
+            v-bind:value="name"
+            v-on:input="$emit('setName', $event.target.value)"
+          >
         </label>
       </div>
       
@@ -94,7 +109,10 @@
         <label>
           <h3 class="h3 form__h3">Подробное описание</h3>
           
-          <textarea class="form-control form-control_textarea w-100"></textarea>
+          <textarea class="form-control form-control_textarea w-100"
+            v-bind:value="text"
+            v-on:input="$emit('setText', $event.target.value)"
+          ></textarea>
         </label>
       </div>
       
@@ -114,7 +132,10 @@
                       <label>
                         <h3 class="h3 form__h3">Дата начала</h3>
                         
-                        <input class="w-100" type="date">
+                        <input class="form-control w-100" type="date"
+                          v-model="datetime.startDate"
+                          v-on:change="updateDatetime(key, datetime)"
+                        >
                       </label>
                     </div>
 
@@ -122,7 +143,10 @@
                       <label>
                         <h3 class="h3 form__h3">Время начала</h3>
                         
-                        <input class="w-100" type="time">
+                        <input class="form-control w-100" type="time"
+                          v-model="datetime.startTime"
+                          v-on:change="updateDatetime(key, datetime)"
+                        >
                       </label>
                     </div>
                   </div>
@@ -144,7 +168,10 @@
                       <label>
                         <h3 class="h3 form__h3">Дата окончания</h3>
                         
-                        <input class="w-100" type="date">
+                        <input class="form-control w-100" type="date"
+                          v-model="datetime.endDate"
+                          v-on:change="updateDatetime(key, datetime)"
+                        >
                       </label>
                     </div>
 
@@ -152,7 +179,10 @@
                       <label>
                         <h3 class="h3 form__h3">Время окончания</h3>
                         
-                        <input class="w-100" type="time">
+                        <input class="form-control w-100" type="time"
+                          v-model="datetime.endTime"
+                          v-on:change="updateDatetime(key, datetime)"
+                        >
                       </label>
                     </div>
                   </div>
@@ -176,7 +206,11 @@
                   <label>
                     <h3 class="h3 form__h3">Дата начала</h3>
                     
-                    <input class="w-100" type="date">
+                    <div class="custom">
+                      <input class="form-control custom__date w-100" type="date"
+                        v-model="datetimeForm.startDate"
+                      >
+                    </div>
                   </label>
                 </div>
 
@@ -184,7 +218,9 @@
                   <label>
                     <h3 class="h3 form__h3">Время начала</h3>
                     
-                    <input class="w-100" type="time">
+                    <input class="form-control w-100" type="time"
+                      v-model="datetimeForm.startTime"
+                    >
                   </label>
                 </div>
               </div>
@@ -206,7 +242,9 @@
                   <label>
                     <h3 class="h3 form__h3">Дата окончания</h3>
                     
-                    <input class="w-100" type="date">
+                    <input class="form-control w-100" type="date"
+                      v-model="datetimeForm.endDate"
+                    >
                   </label>
                 </div>
 
@@ -214,7 +252,9 @@
                   <label>
                     <h3 class="h3 form__h3">Время окончания</h3>
                     
-                    <input class="w-100" type="time">
+                    <input class="form-control w-100" type="time"
+                      v-model="datetimeForm.endTime"
+                    >
                   </label>
                 </div>
               </div>
@@ -223,7 +263,7 @@
         </div>
 
         <button class="btn w-auto" type="button"
-          v-on:click="$emit('addDatetime', {})"
+          v-on:click="addDatetime"
         >+ Добавить дату</button>
       </div>
       
@@ -233,9 +273,18 @@
             <label>
               <h3 class="h3 form__h3">Рейтинг мероприятия</h3>
               
-              <select class="w-100">
-                <option selected>16+</option>
-              </select>
+              <div class="custom custom_select">
+                <select class="form-control custom__select w-100"
+                  v-bind:value="rating"
+                  v-on:input="$emit('setRating', $event.target.value)"
+                >
+                  <option
+                    v-for="rating in ratings"
+                    v-bind:key="rating.id"
+                    v-bind:value="rating.title"
+                  >{{ rating.title }}</option>
+                </select>
+              </div>
             </label>
           </div>
           
@@ -243,7 +292,10 @@
             <label>
               <h3 class="h3 form__h3">Адрес мероприятия</h3>
               
-              <input class="form-control w-100" type="text">
+              <input class="form-control w-100" type="text"
+                v-bind:value="adress"
+                v-on:input="$emit('setAdress', $event.target.value)"
+              >
             </label>
           </div>
         </div>
@@ -270,7 +322,13 @@
 
 <script>
   export default {
-    props: [ 'imageUrl', 'datetimes' ],
+    props: [ 'ratings', 'organizer', 'phone', 'email', 'city', 'name', 'imageUrl', 'text', 'datetimes', 'rating', 'adress', 'previous'],
+
+    data() {
+      return {
+        datetimeForm: {startDate: null, startTime: null, endDate: null, endTime: null},
+      }
+    },
 
     methods: {
       setImage() {
@@ -283,6 +341,17 @@
 
       resetImage() {
         this.$emit('setImage', '')
+      },
+
+      addDatetime() {
+        if (this.datetimeForm.startDate && this.datetimeForm.startTime && this.datetimeForm.endDate && this.datetimeForm.endTime) {
+          this.$emit('addDatetime', this.datetimeForm)
+          this.datetimeForm.startDate = this.datetimeForm.startTime = this.datetimeForm.endDate = this.datetimeForm.endTime = null
+        }
+      },
+
+      updateDatetime(key, datetime) {
+        this.$emit('updateDatetime', key, datetime)
       }
     }    
   }

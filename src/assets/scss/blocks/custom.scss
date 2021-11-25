@@ -1,0 +1,28 @@
+.custom {
+  position: relative;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 55px;
+
+    background-repeat: no-repeat;
+    background-position: center;
+
+    pointer-events: none;
+  }
+
+  &_select {
+    
+    &:after {
+      background-image: url("../img/select-icon.svg");
+    }
+  }
+
+  &__select {
+    appearance: none;
+  }
+}

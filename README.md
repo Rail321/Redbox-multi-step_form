@@ -17,3 +17,6 @@ npm run build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Heroku hosting
+See [App](https://warm-cove-88154.herokuapp.com/).
