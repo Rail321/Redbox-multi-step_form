@@ -25,6 +25,7 @@
               <input class="form-control w-100" type="text"
                 v-bind:value="phone"
                 v-on:input="$emit('setPhone', $event.target.value)"
+                v-maska="'+7 (###) ###-##-##'"
               >
             </label>
           </div>
@@ -36,6 +37,7 @@
               <input class="form-control w-100" type="text"
                 v-bind:value="email"
                 v-on:input="$emit('setEmail', $event.target.value)"
+                v-maska="'X*@A*.A*'"
               >
             </label>
           </div>

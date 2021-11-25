@@ -66,24 +66,22 @@
         isValidationSuccessfull: false,
         ratings: [],
 
-        organizer: 'Coca-Cola',
-        phone: '+7 (999) 888-77-66',
-        email: 'example@mail.com',
-        city: 'Казань',
-        name: 'Чайный заголовок — писать не длиннее трёх строк',
-        imageUrl: 'https://www.vladtime.ru/uploads/posts/2017-02/1487141851_1.jpg',
-        text: 'В лаборатории жгучих перцев соберём собственные аппараты для экстракции. Узнаем, чем на самом деле пахнет мята, почему красный перец такой жгучий и получим привычные для кухни запахи лабораторным способом. В лаборатории вареных яиц c помощью физико-химических методов вычислим идеальное время для варки куриного яйца. Отделим желток от белка, проведем качественное сравнение составов и узнаем все о стоимости выеденного яйца. В лаборатории консервированных ананасов познакомимся с тушенкой и разберемся в методах сохранения продуктов. Законсервируем парочку ананасов четырьмя разными способами и заберем все это домой, чтобы выяснить, какой метод консервации лучше.',
-        datetimes: [
-          {startDate: '2019-08-21', startTime: '17:30', endDate: '2019-08-21', endTime: '16:30'},
-        ],
-        rating: '16+',
-        adress: 'г. Казань, ул. Волкова, д. 7/29',
+        organizer: '',
+        phone: '',
+        email: '',
+        city: '',
+        name: '',
+        imageUrl: '',
+        text: '',
+        datetimes: [],
+        rating: '',
+        adress: '',
       }
     },
 
     async mounted() {
       try {
-        const response = await fetch('http://tesstwork.rdbx24.ru/api/')
+        const response = await fetch('http://testwork.rdbx24.ru/api/')
         const data = await response.json()
         this.ratings = data.result
       } catch(error) {
@@ -94,8 +92,10 @@
 
     methods: {
       next() {
-        window.scrollTo(0, 0)
-        this.isValidationSuccessfull = true
+        if ( this.organizer.trim() && this.phone.trim() && this.email.trim() && this.city.trim() && this.name.trim() && this.imageUrl.trim() && this.text.trim() && this.datetimes.length && this.rating && this.adress.trim() ) {
+          window.scrollTo(0, 0)
+          this.isValidationSuccessfull = true
+        }
       },
 
       previous() {
@@ -121,7 +121,6 @@
       },
 
       updateDatetime(key, datetime) {
-        console.log(key, datetime)
         this.datetimes[key] = datetime
       },
 
@@ -166,7 +165,6 @@
       },
 
       setRating(value) {
-        console.log(value)
         this.rating = value
       },
 
